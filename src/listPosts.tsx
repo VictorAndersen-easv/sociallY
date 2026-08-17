@@ -19,7 +19,7 @@ export function listPosts(){
 
         {
             posts.map(p => {
-            return <> <h3>{p.title}</h3> <h4> {p.body}</h4> </>
+            return <> <h3>{p.title}</h3> <span> {p.body}</span> </>
             })
         }
 
