@@ -1,5 +1,5 @@
 import {Outlet} from "react-router";
-import {listPosts} from "@/listPosts.tsx";
+import {listPosts} from "@/Posts/listPosts.tsx";
 
 export function PostsPage(){
 

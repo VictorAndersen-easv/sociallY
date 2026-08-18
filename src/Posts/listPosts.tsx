@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Link} from "react-router";
 
 export function listPosts(){
 
@@ -14,12 +15,12 @@ export function listPosts(){
     })
 
 
-    //Display the posts
+    //Display the posts. Link to go specific post (not working yet)
     return <div>
 
         {
             posts.map(p => {
-            return <> <h3>{p.title}</h3> <span> {p.body}</span> </>
+                return <>  <h3>{p.title}</h3> <span> {p.body}</span> <Link to={"/posts/"+p.id}>  <button> Go to Post </button> </Link> </>
             })
         }
 

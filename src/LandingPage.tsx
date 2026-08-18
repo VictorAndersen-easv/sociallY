@@ -2,7 +2,7 @@ import {useLocation, useNavigate} from "react-router";
 
 
 
-
+//Homepage (only links to postpage)
 export function LandingPage(){
 
     const navigate = useNavigate()

@@ -10,8 +10,11 @@ import {createRoot} from "react-dom/client";
 import {createBrowserRouter, RouterProvider} from "react-router";
 import {App} from "./App";
 import {LandingPage} from "@/LandingPage.tsx";
-import {PostsPage} from "@/PostsPage.tsx";
+import {PostsPage} from "@/Posts/PostsPage.tsx";
+import {PostDetailPage} from "@/Posts/PostDetailPage.tsx";
 
+
+//Routing
 const elem = document.getElementById("root")!;
 const app = (
     <>
@@ -22,7 +25,13 @@ const app = (
                 },
                 {
                     path: "/posts",
-                    element: <PostsPage/>
+                    element: <PostsPage/>,
+                    children: [
+                        {
+                            path: ":postId",
+                            element: <PostDetailPage/>
+                        }
+                    ]
                 }
             ]
         )}/>
