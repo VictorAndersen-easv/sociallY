@@ -27,12 +27,13 @@ const app = (
                     path: "/posts",
                     element: <PostsPage/>,
                     children: [
-                        {
-                            path: ":postId",
-                            element: <PostDetailPage/>
-                        }
+
                     ]
                 }
+                ,{
+                path: "posts/:postId",
+                element: <PostDetailPage/>
+            }
             ]
         )}/>
 

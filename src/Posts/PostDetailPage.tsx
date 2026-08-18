@@ -18,7 +18,7 @@ export function PostDetailPage() {
         getData()
     }, []);
 
-
+    //I am not completely sure what this does
     async function getData() {
 
         const response = await fetch('https://dummyjson.com/posts/' + params.postId)
@@ -28,7 +28,7 @@ export function PostDetailPage() {
     }
 
     return <div>
-        What am i doing with my life.
+        PLACEHOLDER TEXT
     </div>
 
 
