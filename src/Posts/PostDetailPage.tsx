@@ -13,7 +13,6 @@ export function PostDetailPage() {
 
     const params = useParams<MyParams>();
     const [post, setPost] = useState<Post | undefined>()
-    // Stupid workaround because i can't just use "post"
 
 
     useEffect(() => {
@@ -40,10 +39,11 @@ export function PostDetailPage() {
 
         <h1>{post.title}</h1> <h3> {post.body}</h3>
 
-        <div> <p> Tags: {post.tags}</p>
-            <p>Views: {post.views}</p>
-            <p> Likes: {post.reactions.likes}</p>
-            <p> Dislikes: {post.reactions.dislikes} </p>
+        <div>
+            <p>🏷️Tags: {JSON.stringify(post.tags)}</p>
+            <p>👁️Views: {post.views}</p>
+            <p>👍 Likes: {post.reactions.likes}</p>
+            <p>👎 Dislikes: {post.reactions.dislikes} </p>
         </div>
 
     </div>
