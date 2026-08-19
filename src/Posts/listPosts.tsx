@@ -15,7 +15,7 @@ export function listPosts(){
     })
 
 
-    //Display the posts. Link to go specific post (not working yet)
+    //Display the posts. Link to go specific post
     return <div>
 
         {
@@ -43,4 +43,18 @@ export interface Post {
 export interface Reactions {
     likes: number
     dislikes: number
+}
+
+export interface Comments {
+    id: number
+    body: string
+    postId: number
+    likes: number
+    user: User
+}
+
+export interface User {
+    id: number
+    username: string
+    fullName: string
 }
