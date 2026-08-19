@@ -12,12 +12,25 @@ export function listPosts(){
             .then(res => res.json())
             .then((json)=>{setPosts(json.posts)})
 
-    })
+    }, [])
 
+/*    function removePost(id: number) {
+        const duplicate = [...posts];
+        const filteredArray = duplicate.filter(p => p.id != id)
+        setPosts(filteredArray)
+    }*/
 
     //Display the posts. Link to go specific post
     return <div>
 
+        <input onChange={e => {
+            console.log(posts.filter(p => p.body.includes( e.target.value)))
+
+            fetch('https://dummyjson.com/posts/search?q='+e.target.value)
+                .then(res => res.json())
+                .then((json) =>setPosts(json.posts));
+
+        }} />
         {
             posts.map(p => {
                 return <>  <h3>{p.title}</h3> <span> {p.body}</span> <Link to={"/posts/"+p.id}>  <button> Go to Post </button> </Link> </>
@@ -27,6 +40,13 @@ export function listPosts(){
 
     </div>;
 }
+
+
+interface MyChildComponentProps {
+    post: Post,
+    removePost: (id: number) => void
+}
+
 
 
 //Set what a post is/has
