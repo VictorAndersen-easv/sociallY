@@ -4,6 +4,7 @@ import {listPosts} from "@/Posts/listPosts.tsx";
 export function PostsPage(){
 
     return <div>
+        <div>sociallY</div>
         <h1>Posts:</h1>
 
         {listPosts()}

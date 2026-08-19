@@ -5,12 +5,6 @@ import {listPosts, type Post, type Reactions} from "@/Posts/listPosts.tsx";
 
 type MyParams = {
     postId: string;
-    title: string
-    body: string
-    tags: string[]
-    reactions: Reactions
-    views: number
-    userId: number
 }
 
 
@@ -18,9 +12,8 @@ export function PostDetailPage() {
 
 
     const params = useParams<MyParams>();
-    const [post, setPost] = useState()
+    const [post, setPost] = useState<Post | undefined>()
     // Stupid workaround because i can't just use "post"
-    const myCurrentPost: Post = post??"";
 
 
     useEffect(() => {
@@ -36,6 +29,8 @@ export function PostDetailPage() {
         console.log(post)
 
     }
+    if(!post)
+        return <div>loading...</div>
 
     //What actually shows up on the page
     return <div>
@@ -43,12 +38,12 @@ export function PostDetailPage() {
 
         <div> <Link to={"/posts/"}> <button> Go back</button> </Link> </div>
 
-        <h1>{myCurrentPost.title}</h1> <h3> {myCurrentPost.body}</h3>
+        <h1>{post.title}</h1> <h3> {post.body}</h3>
 
-        <div> <p> Tags: {myCurrentPost.tags}</p>
-            <p>Views: {myCurrentPost.views}</p>
-            <p> Likes: more than 1 i guess</p>
-            <p> Dislikes: more than 2 i think </p>
+        <div> <p> Tags: {post.tags}</p>
+            <p>Views: {post.views}</p>
+            <p> Likes: {post.reactions.likes}</p>
+            <p> Dislikes: {post.reactions.dislikes} </p>
         </div>
 
     </div>
