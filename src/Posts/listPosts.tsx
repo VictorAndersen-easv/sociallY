@@ -2,17 +2,16 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router";
 
 interface ListPostsProps {
-    posts: Post[] ,
+    posts: Post[],
     setPosts: ((value: (((prevState: Post[]) => Post[]) | Post[])) => void)
 }
 
 export function ListPosts({posts, setPosts}: ListPostsProps) {
 
 
-
     //Get the posts
     useEffect(() => {
-        if(posts.length > 0)
+        if (posts.length > 0)
             return;
         fetch('https://dummyjson.com/posts')
             .then(res => res.json())
@@ -37,17 +36,28 @@ export function ListPosts({posts, setPosts}: ListPostsProps) {
         }}/>
         {
             posts.map(p => {
-                return <>  <h3>{p.title}</h3> <span> {p.body}</span> <Link to={"/posts/" + p.id}>
-                    <button> Go to Post</button>
-                </Link> </>
+                return <>
+                    <h3>{p.title}</h3> <span> {p.body}</span>
+                    <Link to={"/posts/" + p.id}>
+                        <button> Go to Post</button>
+                    </Link>
+                    <button onClick={()=>{removeProduct(p.id)}}> Obliterate this post from existence</button>
+                </>
+
             })
         }
 
 
     </div>;
 
+    function removeProduct(id: number) {
+        const duplicate = [...posts];
+        const filteredArray = duplicate.filter(p => p.id != id)
+        setPosts(filteredArray)
+    }
 
 }
+
 
 //Set what a post is/has
 export interface Post {
