@@ -61,7 +61,7 @@ export function PostDetailPage() {
 
         <div>
             Comments: {comments?.map(c =>{ return <>
-            <p>{c.user.username} says:</p> <p>{c.body}</p> <p> 👍 {c.likes}</p>
+            <p>👤 {c.user.username} says:</p> <p>{c.body}</p> <p> 👍 {c.likes}</p>
 
 
         </>})}

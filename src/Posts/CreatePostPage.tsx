@@ -17,6 +17,7 @@ export function CreatePostPage({setPosts, posts}: CreatePostPageProps) {
     const [bodyText, setBodyText] = useState<String>()
 
     return <div>
+        <div>sociallY</div>
         <Link to={"/posts"}>
             <button> Go Back </button>
         </Link>
