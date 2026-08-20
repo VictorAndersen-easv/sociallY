@@ -1,22 +1,28 @@
-import {Outlet} from "react-router";
-import {listPosts} from "@/Posts/listPosts.tsx";
+import {Link, Outlet} from "react-router";
+import {ListPosts, type Post} from "@/Posts/listPosts.tsx";
 import {useState} from "react";
 
 
+interface PostsPageProps {
+    posts: Post[],
+    setPosts: (value: (((prevState: Post[]) => Post[]) | Post[])) => void
+}
 
-
-
-export function PostsPage(){
+function PostsPage({posts, setPosts}: PostsPageProps) {
 
     return <div>
         <div>sociallY</div>
-        <div> </div>
-        <h1>Posts:</h1>
+        <div><Link to={"/createNewPost"}>
+            <button> Create New Post</button>
+        </Link></div>
+        <h1>Search Posts:</h1>
 
 
-        {listPosts()}
+        <ListPosts posts={posts} setPosts={setPosts} />
 
         <Outlet/>
 
     </div>
 }
+
+export default PostsPage

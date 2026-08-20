@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
-import {type Comments, listPosts, type Post, type Reactions} from "@/Posts/listPosts.tsx";
+import {type Comments, ListPosts, type Post, type Reactions} from "@/Posts/listPosts.tsx";
 
 
 type MyParams = {
@@ -39,8 +39,8 @@ export function PostDetailPage() {
 
     if (!post)
         return <div>loading...</div>
-    if (!comments)
-        return <div>loading...</div>
+    //if (!comments)
+    //    return <div>loading...</div>
 
     //What actually shows up on the page
     return <div>
@@ -55,12 +55,12 @@ export function PostDetailPage() {
         <div>
             <p>🏷️Tags: {JSON.stringify(post.tags)}</p>
             <p>👁️Views: {post.views}</p>
-            <p>👍 Likes: {post.reactions.likes}</p>
-            <p>👎 Dislikes: {post.reactions.dislikes} </p>
+            <p>👍 Likes: {post.reactions?.likes}</p>
+            <p>👎 Dislikes: {post.reactions?.dislikes} </p>
         </div>
 
         <div>
-            Comments: {comments.map(c =>{ return <>
+            Comments: {comments?.map(c =>{ return <>
             <p>{c.user.username} says:</p> <p>{c.body}</p> <p> 👍 {c.likes}</p>
 
 

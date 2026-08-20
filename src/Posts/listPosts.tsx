@@ -1,53 +1,53 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router";
 
-export function listPosts(){
+interface ListPostsProps {
+    posts: Post[] ,
+    setPosts: ((value: (((prevState: Post[]) => Post[]) | Post[])) => void)
+}
+
+export function ListPosts({posts, setPosts}: ListPostsProps) {
 
 
-    const [posts,setPosts] = useState<Post[]>([])
 
     //Get the posts
-    useEffect(()=> {
+    useEffect(() => {
+        if(posts.length > 0)
+            return;
         fetch('https://dummyjson.com/posts')
             .then(res => res.json())
-            .then((json)=>{setPosts(json.posts)})
+            .then((json) => {
+                setPosts(json.posts)
+            })
 
-    }, [])
+    }, [posts])
 
-/*    function removePost(id: number) {
-        const duplicate = [...posts];
-        const filteredArray = duplicate.filter(p => p.id != id)
-        setPosts(filteredArray)
-    }*/
 
-    //Display the posts. Link to go specific post
+    //Search the posts. Display the posts. Link to go specific post.
     return <div>
 
+
         <input onChange={e => {
-            console.log(posts.filter(p => p.body.includes( e.target.value)))
+            console.log(posts.filter(p => p.body.includes(e.target.value)))
 
-            fetch('https://dummyjson.com/posts/search?q='+e.target.value)
+            fetch('https://dummyjson.com/posts/search?q=' + e.target.value)
                 .then(res => res.json())
-                .then((json) =>setPosts(json.posts));
+                .then((json) => setPosts(json.posts));
 
-        }} />
+        }}/>
         {
             posts.map(p => {
-                return <>  <h3>{p.title}</h3> <span> {p.body}</span> <Link to={"/posts/"+p.id}>  <button> Go to Post </button> </Link> </>
+                return <>  <h3>{p.title}</h3> <span> {p.body}</span> <Link to={"/posts/" + p.id}>
+                    <button> Go to Post</button>
+                </Link> </>
             })
         }
 
 
     </div>;
+
+
 }
-
-
-interface MyChildComponentProps {
-    post: Post,
-    removePost: (id: number) => void
-}
-
-
 
 //Set what a post is/has
 export interface Post {
